@@ -1,0 +1,52 @@
+---
+title: Segurança, Privacidade e LGPD
+description: 'Como garantimos a integridade e o sigilo dos dados sensíveis'
+---
+
+No VínculoTEA, lidamos com dados sensíveis de menores e informações de saúde. Por isso, a segurança não é uma camada extra, mas a base de nossa construção.
+
+## Camadas de Proteção
+
+### 1. Autenticação e Identidade (Supabase Auth)
+- Hashing de Senhas: Utilizamos o algoritmo Argon2 para garantir que nem mesmo nós saibamos as senhas dos usuários.
+- Sessões Seguras: Tokens JWT com expiração curta e refresh tokens rotativos.
+- Recuperação de Acesso: Fluxo seguro via e-mail com tokens de uso único.
+
+### 2. Row Level Security (RLS) - O Guardião do Banco
+Implementamos políticas de RLS no PostgreSQL onde cada linha de tabela conhece seu dono ou quem tem permissão para vê-la.
+- Isolamento de Escola: Usuários da Escola A nunca verão dados da Escola B.
+- Privacidade do Aluno: Somente professores vinculados à turma/aluno podem acessar o prontuário.
+
+```sql
+-- Exemplo de política RLS simplificada
+CREATE POLICY "Professores podem ver apenas seus alunos"
+ON public.Alunos
+FOR SELECT
+USING (
+  auth.uid() IN (
+    SELECT user_id FROM public.Professor_Vinculo WHERE aluno_id = Alunos.id
+  )
+);
+```
+
+### 3. Criptografia em Trânsito
+Toda comunicação entre o navegador do usuário e nossos servidores é feita via TLS 1.3 (HTTPS), garantindo que os dados não sejam interceptados.
+
+---
+
+## Conformidade com a LGPD
+
+Estamos alinhados com a Lei Geral de Proteção de Dados (Brasil):
+
+- Consentimento: O cadastro de alunos é realizado mediante termo de responsabilidade da unidade escolar.
+- Direito de Acesso: Pais e responsáveis podem solicitar, via escola, a exportação de seus dados (PEI em PDF).
+- Exclusão de Dados: Implementamos o "direito ao esquecimento" para exclusão definitiva de registros conforme solicitado por instâncias legais.
+- Finalidade Específica: Os dados são usados exclusivamente para fins pedagógicos e terapêuticos.
+
+## Gestão de Documentos (Storage)
+- Documentos e fotos são armazenados em Buckets Privados.
+- Links de acesso a imagens são gerados com tempo de expiração curto (Signed URLs), impedindo que links vazados sejam acessados após alguns minutos.
+
+<Info>
+  Em caso de incidente de segurança, o VínculoTEA possui logs de auditoria interna para rastreabilidade de acessos.
+</Info>

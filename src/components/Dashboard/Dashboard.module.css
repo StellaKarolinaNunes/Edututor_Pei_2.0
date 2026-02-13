@@ -1,0 +1,190 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f8fafc;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .dashboard {
+    flex-direction: row;
+  }
+}
+
+:global(.dark) .dashboard {
+  background-color: #0f172a;
+}
+
+/* Mobile Header */
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background-color: white;
+  border-bottom: 1px solid #f1f5f9;
+  z-index: 60;
+  height: 64px;
+}
+
+:global(.dark) .mobileHeader {
+  background-color: #1e293b;
+  border-bottom-color: #334155;
+}
+
+@media (min-width: 1024px) {
+  .mobileHeader {
+    display: none;
+  }
+}
+
+.sidebar {
+  width: 280px;
+  background-color: white;
+  border-right: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+
+  /* Mobile: Fixed and hidden by default */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.sidebarOpen {
+  transform: translateX(0);
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    position: relative;
+    transform: none;
+    display: flex;
+    width: 260px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sidebar {
+    width: 300px;
+  }
+}
+
+:global(.dark) .sidebar {
+  background-color: #1a2233;
+  border-right-color: #1e293b;
+  color: #f8fafc;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+}
+
+:global(.dark) .mainContent {
+  background-color: #0c1222;
+}
+
+@media (min-width: 640px) {
+  .mainContent {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .mainContent {
+    padding: 2rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mainContent {
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .mainContent {
+    padding: 3.5rem 4rem;
+  }
+}
+
+/* Scrollbar Styling */
+.mainContent::-webkit-scrollbar {
+  width: 5px;
+}
+
+.mainContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+  background-color: #e2e8f0;
+  border-radius: 20px;
+}
+
+:global(.dark) .mainContent::-webkit-scrollbar-thumb {
+  background-color: #1e293b;
+}
+
+/* Custom Effects */
+.glassCard {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+:global(.dark) .glassCard {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hoverScale {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hoverScale:hover {
+  transform: scale(1.02);
+}
+
+.glowPrimary {
+  box-shadow: 0 0 20px -5px rgba(20, 57, 109, 0.2);
+}
+
+:global(.dark) .glowPrimary {
+  box-shadow: 0 0 25px -10px rgba(35, 121, 188, 0.3);
+}

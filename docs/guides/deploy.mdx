@@ -1,0 +1,41 @@
+---
+title: Deploy e Produção
+description: 'Como colocar o VínculoTEA online para usuários reais'
+---
+
+Este guia detalha os passos técnicos para realizar o deploy da aplicação e configurar o ambiente de produção.
+
+## Hospedagem do Frontend
+
+Recomendamos o uso da Vercel ou Netlify devido à integração nativa com projetos React/Vite.
+
+### Passos para Vercel:
+1. Conecte seu repositório GitHub à Vercel.
+2. Nas configurações de Build:
+   - Framework Preset: Vite.
+   - Build Command: `npm run build`.
+   - Output Directory: `dist`.
+3. Variáveis de Ambiente:
+   - Adicione `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` com os valores de produção.
+
+## Configuração de Domínio
+
+Para usar um endereço personalizado (ex: app.suaescola.com.br):
+
+1. Acesse o painel de DNS do seu provedor (Cloudflare, Registro.br, etc).
+2. Adicione um registro CNAME apontando para o endereço fornecido pela hospedagem (ex: `cname.vercel-dns.com`).
+3. Aguarde o tempo de propagação do SSL.
+
+## Segurança do Supabase (Produção)
+
+Antes de abrir o sistema para usuários reais:
+
+1. Desative o modo de autorregisto (Allow new users to sign up) no painel do Supabase se desejar que apenas administradores criem contas para professores.
+2. Valide as Políticas de RLS: Use o comando `npm run test:security` (se disponível) ou faça testes manuais tentando acessar dados sem token.
+3. Configure o SMTP: Use um serviço como SendGrid ou Resend para enviar e-mails de recuperação de senha, substituindo o servidor padrão do Supabase.
+
+## Backups de Dados
+
+O Supabase realiza backups diários automaticamente no plano Pro. Para backups manuais:
+- Utilize o comando `supabase db dump` via CLI para exportar o esquema e os dados localmente.
+- Armazene esses dumps em um local seguro e externo à nuvem principal.

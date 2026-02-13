@@ -1,0 +1,282 @@
+.container {
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    color: inherit;
+    transition: padding 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
+
+.title {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.025em;
+    transition: color 0.3s, font-size 0.3s;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 1.875rem;
+    }
+}
+
+:global(.dark) .title {
+    color: #f8fafc;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 0.825rem;
+    margin-top: 0.25rem;
+}
+
+
+:global(.dark) .subtitle {
+    color: #94a3b8;
+}
+
+
+/* Config Panel */
+.configPanel {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+:global(.dark) .configPanel {
+    background-color: #1e293b;
+    border-color: #334155;
+}
+
+.configTitle {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+}
+
+:global(.dark) .configTitle {
+    color: #f8fafc;
+}
+
+.configGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .configGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+:global(.dark) .label {
+    color: #94a3b8;
+}
+
+.input,
+.select {
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+:global(.dark) .input,
+:global(.dark) .select {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: white;
+}
+
+/* Summary Box */
+.summaryBox {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #f8fafc;
+    border-radius: 0.5rem;
+    border-left: 4px solid #14396D;
+    transition: background-color 0.3s;
+}
+
+:global(.dark) .summaryBox {
+    background-color: #0f172a;
+    border-left-color: #38bdf8;
+}
+
+.summaryTitle {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #14396D;
+    margin-bottom: 0.25rem;
+}
+
+:global(.dark) .summaryTitle {
+    color: #38bdf8;
+}
+
+.summaryText {
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+:global(.dark) .summaryText {
+    color: #94a3b8;
+}
+
+/* Reports Grid */
+.reportsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .reportsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.reportCard {
+    background-color: white;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+}
+
+:global(.dark) .reportCard {
+    background-color: #1e293b;
+    border-color: #334155;
+}
+
+.reportCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #14396D;
+}
+
+:global(.dark) .reportCard:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+.cardIcon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background-color: #eff6ff;
+    /* blue-50 */
+    color: #1d4ed8;
+    /* blue-700 */
+}
+
+:global(.dark) .cardIcon {
+    background-color: #1e3a8a;
+    /* blue-900 */
+    color: #60a5fa;
+    /* blue-400 */
+}
+
+.cardTitle {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+:global(.dark) .cardTitle {
+    color: #f8fafc;
+}
+
+.cardDesc {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+:global(.dark) .cardDesc {
+    color: #94a3b8;
+}
+
+.generateButton {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: #14396D;
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+:global(.dark) .generateButton {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+.generateButton:hover {
+    background-color: #2379BC;
+}
+
+:global(.dark) .generateButton:hover {
+    background-color: #7dd3fc;
+}

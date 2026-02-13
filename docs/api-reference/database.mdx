@@ -1,0 +1,64 @@
+---
+title: Referência de Banco de Dados
+description: 'Entidades, Esquemas e Relacionamentos no Supabase'
+---
+
+Para desenvolvedores que desejam estender as funcionalidades do VínculoTEA ou realizar consultas diretas via SQL, aqui está o mapeamento do nosso banco de dados.
+
+## Esquema Relacional
+
+O banco utiliza o esquema public do PostgreSQL.
+
+### Tabela: Alunos
+Armazena o prontuário central dos beneficiários.
+- Aluno_ID (uuid): Chave primária.
+- Nome (text): Nome completo.
+- CID (text): Código da doença.
+- Escola_ID (fkey): Relacionamento com a unidade.
+- Dados (jsonb): Campo extensível para informações pedagógicas extras.
+
+### Tabela: PEIs
+Armazena as versões dos Planos Individuais.
+- PEI_ID (uuid): Chave primária.
+- Aluno_ID (fkey): Vínculo com o aluno.
+- Versao (text): Nome amigável da versão.
+- Status (text): 'Ativo', 'Arquivado' ou 'Rascunho'.
+- Dados (jsonb): Objeto completo gerado pelo PEIWizard.
+
+### Tabela: Escolas
+Gestão das unidades.
+- Escola_ID (uuid): Chave primária.
+- Nome (text): Nome fantasia.
+- Status (text): 'Ativo' ou 'Inativo'.
+
+### Tabela: Professores
+Cadastro de profissionais.
+- Professor_ID (uuid): Chave primária vinculada ao auth.users.
+- Especialidade (text): Área de atuação.
+- Unidade_ID (fkey): Escola principal de atuação.
+
+---
+
+## Row Level Security (RLS)
+
+Todas as tabelas possuem RLS ativado por padrão.
+
+### Exemplo de Configuração de Segurança:
+Ao adicionar uma nova tabela, certifique-se de aplicar políticas de isolamento:
+
+```sql
+-- Garante que um professor só veja alunos da sua própria escola
+ALTER TABLE public.Alunos ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Acesso por Unidade" ON public.Alunos
+FOR ALL USING (
+  auth.jwt() ->> 'escola_id' = escola_id::text
+);
+```
+
+## Storage (S3/Buckets)
+
+- student-photos: Armazena as fotos de perfil.
+  - Formatos: PNG, JPG.
+  - Acesso: Somente via URLs assinadas geradas pelo backend.
+- pei-documents: Armazena as exportações em PDF dos PEIs finalizados.

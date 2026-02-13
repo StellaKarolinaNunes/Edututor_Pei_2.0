@@ -1,0 +1,59 @@
+---
+title: Estrutura da Arquitetura
+description: 'Entenda como o VínculoTEA foi construído sob o capô'
+---
+
+Nossa arquitetura prioriza escalabilidade, segurança e velocidade de desenvolvimento. Utilizamos uma abordagem de Frontend-Heavy SPA, alavancando os recursos do Supabase para o backend.
+
+## A Stack Tecnológica
+
+### Core Frontend
+- React 18: Base para componentes reativos.
+- TypeScript: Garantia de tipagem estrita para reduzir bugs em produção.
+- Vite: Otimização de build e hot-reloading instantâneo.
+
+### Backend e Database
+- PostgreSQL (Supabase): Nosso banco de dados relacional.
+- GoTrue: Sistema de autenticação robusto nativo do Supabase.
+- PostgREST: API RESTful gerada automaticamente a partir do esquema do banco.
+
+## Organização de Pastas
+
+O projeto segue um padrão de separação de responsabilidades (SoC):
+
+```text
+src/
+├── components/           # Componentes de UI divididos por domínio
+│   ├── Dashboard/        # Estrutura principal do painel administrativo
+│   │   ├── Students/     # Tudo relacionado ao domínio do Aluno
+│   │   ├── Schools/      # Domínio de Unidades Escolares
+│   │   └── Teachers/     # Domínio de Professores/Especialistas
+│   └── Shared/           # Botões, Inputs e Cards reutilizáveis
+├── lib/                  # Camada de Infraestrutura/Serviços
+│   ├── supabase.ts       # Configuração do Client SDK
+│   └── studentService.ts # Métodos CRUD isolados da UI
+├── styles/               # Tokens de design e CSS Global
+└── hooks/                # Lógica de estado customizada
+```
+
+## Ciclo de Vida do Dado
+
+1. Interação: O usuário preenche um formulário no PEIWizard.tsx.
+2. Validação: O componente valida os tipos via TypeScript e lógica interna.
+3. Serviço: O componente chama studentService.create(data).
+4. Persistência: O SDK do Supabase faz a chamada HTTPS ao backend.
+5. Realtime: O banco processa e, se configurado, emite um evento de atualização para todos os clientes conectados.
+
+## Otimização de Performance
+
+- Lazy Loading: Telas pesadas são carregadas apenas quando necessário.
+- CSS-in-JS/Modules: Estilos scoped para evitar conflitos de colisão de nomes.
+- Image Optimization: Fotos de alunos são processadas e servidas via Storage do Supabase com cache.
+
+## Segurança Arquitetural
+
+Não expomos segredos no frontend. As permissões são controladas via JWT injetado em cada requisição, validado diretamente pelo PostgreSQL através de políticas de RLS (Row Level Security).
+
+<Info>
+  Diferente de backends tradicionais, no VínculoTEA, a lógica de autorização reside no Banco de Dados, não no código Node/Python.
+</Info>

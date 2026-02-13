@@ -1,0 +1,52 @@
+---
+title: Solução de Problemas (Troubleshooting)
+description: 'Respostas para as dúvidas mais comuns e erros técnicos'
+---
+
+## Suporte ao Usuário Final
+
+<AccordionGroup>
+  <Accordion title="Não consigo anexar a foto do aluno" icon="image">
+    Verifique se o arquivo está no formato JPG ou PNG e se possui menos de 2MB. Conexões de internet lentas podem causar timeout no upload para o Supabase Storage.
+  </Accordion>
+  <Accordion title="O Wizard de PEI não avança de etapa" icon="wand-magic-sparkles">
+    Certifique-se de que todos os campos obrigatórios (marcados com *) foram preenchidos. Verifique o console do navegador (F12) para ver se há algum erro de validação de dados.
+  </Accordion>
+  <Accordion title="Minhas alterações não foram salvas" icon="floppy-disk">
+    O VínculoTEA salva os dados ao clicar em "Salvar" ou ao finalizar um Wizard. Se você fechou a aba antes disso, os dados podem não ter sido persistidos. Verifique se há uma mensagem de "Sucesso" no canto superior direito.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Erros Técnicos (Devs)
+
+### 1. Supabase Key not provided
+Sintoma: A aplicação carrega, mas não exibe dados ou falha no login.
+Solução: Verifique seu .env. Se você acabou de criar o arquivo, reinicie o servidor Vite (npm run dev) para que as variáveis sejam injetadas.
+
+### 2. Infinite Loading na Lista de Alunos
+Sintoma: O spinner de carregamento não desaparece.
+Verificação:
+- Abra a aba Network do navegador.
+- Procure por chamadas para o Supabase. Se o status for 403 Forbidden, suas políticas de RLS estão bloqueando o acesso do seu usuário atual.
+
+### 3. Falha no Build (npm run build)
+Sintoma: Erros de TypeScript durante a compilação.
+Causa: Geralmente falta de tipagem em novos componentes ou alterações em interfaces de serviços sem atualização nos componentes que as consomem.
+Solução: Execute npx tsc --noEmit para ver a lista completa de erros de tipagem e corrija-os antes de gerar o build.
+
+---
+
+## Canais de Ajuda
+
+Se o seu problema não estiver listado aqui, utilize nossos canais oficiais:
+
+<CardGroup cols={2}>
+  <Card title="Suporte via E-mail" icon="envelope" href="mailto:suporte@vinculotea.com.br">
+    Tempo de resposta: até 24h úteis.
+  </Card>
+  <Card title="GitHub Issues" icon="github" href="https://github.com/StellaKarolinaNunes/Edututor_Pei_2.0/issues">
+    Para reportar bugs técnicos e sugestões de código.
+  </Card>
+</CardGroup>

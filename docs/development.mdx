@@ -1,0 +1,68 @@
+---
+title: Configuração de Desenvolvimento
+description: 'Prepare seu ambiente para contribuir com o VínculoTEA'
+---
+
+## Ambiente Local
+
+Siga este guia passo a passo para rodar a plataforma em sua máquina.
+
+### Pré-requisitos Mínimos
+- Node.js: v18.0.0 ou superior.
+- Git: Para controle de versão.
+- Editor: Recomendamos VS Code com extensões para ESLint e Tailwind.
+
+### Processo de Inicialização
+
+1. Clonagem Estruturada:
+   ```bash
+   git clone https://github.com/StellaKarolinaNunes/Edututor_Pei_2.0.git
+   cd Edututor_Pei_2.0
+   ```
+
+2. Gestão de Dependências:
+   Utilizamos o npm. Certifique-se de limpar instalações anteriores se tiver problemas:
+   ```bash
+   rm -rf node_modules
+   npm install
+   ```
+
+3. Orquestração de Variáveis:
+   Copie o exemplo de ambiente e preencha com suas credenciais:
+   ```bash
+   cp .env.example .env
+   ```
+   *As chaves podem ser encontradas no Dashboard do Supabase em Project Settings > API.*
+
+4. Execução em Modo Dev:
+   ```bash
+   npm run dev
+   ```
+   O projeto estará disponível em http://localhost:5173.
+
+---
+
+## Fluxo de Trabalho (Workflow)
+
+Ao desenvolver novas funcionalidades, siga este padrão:
+
+### 1. Criação de Componente
+Crie o componente em src/components/[Dominio]. Use CSS Modules para estilos específicos para evitar vazamento de CSS.
+
+### 2. Implementação de Serviço
+Se precisar de dados do banco, nunca faça a chamada direta no componente. Adicione um método em src/lib/[dominio]Service.ts.
+
+### 3. Registro de Rota
+Atualize o App.tsx para incluir a nova tela no sistema de roteamento.
+
+## Comandos de Qualidade
+
+| Script | Ação |
+| :--- | :--- |
+| npm run build | Compila o projeto para produção (pasta dist). |
+| npm run lint | Analisa o código em busca de erros de sintaxe ou padrões. |
+| npm run preview | Sobe um servidor local com o build de produção para testes finais. |
+
+<Warning>
+  Sempre execute npm run lint antes de abrir um Pull Request para garantir a consistência do código.
+</Warning>

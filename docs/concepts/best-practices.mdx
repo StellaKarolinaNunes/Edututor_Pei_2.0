@@ -1,0 +1,46 @@
+---
+title: Boas Práticas e UX
+description: 'Diretrizes de design e desenvolvimento para o ecossistema VínculoTEA'
+---
+
+Trabalhar com TEA exige cuidados redobrados com a carga cognitiva e a acessibilidade.
+
+## Design System
+
+Nossa interface é baseada em tons suaves de azul e cinza para evitar sobrecarga sensorial.
+
+### UI Tokens
+- Cores: Use @slate-900 para textos e @primary (azul sutil) para ações principais.
+- Bordas: Utilizamos rounded-3xl e rounded-4xl para transmitir suavidade e modernidade.
+- Animações: Use o Framer Motion com transições de 0.3s e bounce: 0. Animações muito rápidas ou frenéticas devem ser evitadas.
+
+## Escrita de PEIs
+
+Oriente os usuários a seguirem as seguintes boas práticas de redação:
+
+- Seja Objetivo: Em vez de "O aluno está melhor", use "O aluno consegue manter o contato visual por 5 segundos".
+- Foco no Positivo: Comece sempre pelos pontos fortes (Etapa 2 do Wizard).
+- Linguagem Inclusiva: Utilize termos centrados na pessoa (ex: "Aluno com Autismo" em vez de "Aluno Autista").
+
+## Padrão de Código (Devs)
+
+### Componentes Funcionais
+Sempre utilize const Component = () => {}. Evite classes.
+
+### Custom Hooks
+Extraia a lógica de negócio de telas complexas para hooks específicos:
+```typescript
+// Exemplo
+const { peis, isLoading } = useStudentPeis(studentId);
+```
+
+### Tratamento de Erros
+Nunca deixe uma falha de API silenciosa. Use o componente ErrorMessage ou Toasts para notificar o usuário em caso de falha no Supabase.
+
+---
+
+## Acessibilidade (A11y)
+
+1. Alt Text: Todas as imagens e ícones do dashboard devem ter descrições significativas.
+2. Contraste: Mantenha um ratio de contraste mínimo de 4.5:1 para garantir legibilidade.
+3. Navegação via Teclado: O Wizard de PEI deve ser totalmente navegável via Tab e Enter.

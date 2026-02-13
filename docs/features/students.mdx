@@ -1,0 +1,58 @@
+---
+title: Gestão de Alunos
+description: 'Como gerenciar o ciclo de vida do beneficiário no VínculoTEA'
+---
+
+A gestão de alunos é o ponto de partida de toda a inteligência pedagógica do VínculoTEA. O sistema foi desenhado para capturar não apenas dados biográficos, mas também o contexto clínico e social de cada criança.
+
+## O Perfil do Aluno
+
+Cada aluno possui um prontuário centralizado que agrupa todas as informações críticas.
+
+### Atributos Principais:
+- Identificação Visual: Foto para reconhecimento rápido em listas de turmas.
+- CID (Classificação Internacional de Doenças): Campo essencial para auditoria e base legal de inclusão.
+- Histórico Médico: Detalhamento de diagnósticos e sensibilidades.
+- Vínculos: Associação direta com uma Unidade Escolar e uma Família.
+
+## Wizard de Cadastro (Passo a Passo)
+
+O processo de cadastro é dividido em 4 etapas para garantir a precisão dos dados:
+
+### 1. Informações Básicas
+Nesta etapa, coletamos o nome, data de nascimento e gênero. O sistema valida automaticamente a idade para sugerir as séries/anos compatíveis.
+
+### 2. Contexto Familiar
+O VínculoTEA exige o vínculo com um responsável. Se o responsável já estiver cadastrado no sistema (mesmo em outra escola da rede), ele pode ser reaproveitado, mantendo a integridade do banco de dados.
+
+### 3. Dados Escolares
+Matrícula do aluno em uma unidade específica, definição de série (ex: 1º Ano Fundamental) e turno.
+
+### 4. Upload de Documentos e Fotos
+Nesta fase final, o usuário realiza o upload da imagem de perfil, que é processada e armazenada de forma organizada no Supabase Storage.
+
+## Abas de Acompanhamento (Detail View)
+
+Ao acessar o perfil de um aluno, o professor ou gestor tem acesso a quatro visões distintas:
+
+<AccordionGroup>
+  <Accordion title="Aba: Disciplinas" icon="book-bookmark">
+    Visualização da grade curricular. Permite ver quais matérias o aluno cursa e quem são os professores responsáveis. Essencial para garantir que as adaptações do PEI estão sendo aplicadas em todas as frentes.
+  </Accordion>
+  <Accordion title="Aba: Execução" icon="clipboard-list-check">
+    Onde ocorre o registro diário. O professor pode lançar relatos sobre o comportamento, crises, momentos de engajamento e progresso nas atividades propostas.
+  </Accordion>
+  <Accordion title="Aba: Notas" icon="award">
+    Centralização do desempenho acadêmico. As notas podem ser lançadas por bimestre/trimestre conforme a configuração da escola.
+  </Accordion>
+  <Accordion title="Aba: PEIs" icon="file-signature">
+    Lista histórica de todos os Planos Educacionais Individualizados. Permite abrir versões passadas para comparação.
+  </Accordion>
+</AccordionGroup>
+
+## Filtros e Busca
+O sistema possui um motor de busca de alta performance que permite localizar alunos por:
+- Nome
+- Unidade Escolar
+- Status (Ativo/Inativo)
+- CID específico

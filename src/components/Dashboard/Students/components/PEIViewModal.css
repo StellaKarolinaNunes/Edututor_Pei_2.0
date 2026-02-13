@@ -1,0 +1,101 @@
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 2cm;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    nav,
+    aside,
+    footer,
+    .no-print,
+    button,
+    .id-header-actions,
+    .custom-scrollbar::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .print-container {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        max-height: none !important;
+        overflow: visible !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+
+    .print-header {
+        display: block !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+        margin-bottom: 3rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    .print-content {
+        display: block !important;
+        overflow: visible !important;
+        height: auto !important;
+        padding: 0 !important;
+        background: white !important;
+    }
+
+    .print-section {
+        display: block !important;
+        page-break-inside: avoid;
+        margin-bottom: 3rem !important;
+        clear: both;
+    }
+
+    .print-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    .print-field-full {
+        grid-column: span 2 !important;
+    }
+
+    .print-field {
+        page-break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+
+    .print-item-box {
+        border: 1px solid #e2e8f0 !important;
+        padding: 1.5rem !important;
+        border-radius: 0.75rem !important;
+        background-color: #f8fafc !important;
+        min-height: auto !important;
+    }
+
+    .print-label {
+        color: #64748b !important;
+        font-weight: 800 !important;
+        font-size: 9pt !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .print-value {
+        color: #1e293b !important;
+        font-size: 10pt !important;
+        font-weight: 600 !important;
+    }
+
+    h2,
+    h3 {
+        color: black !important;
+    }
+}

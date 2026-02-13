@@ -1,0 +1,92 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+.mainPane {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centraliza verticalmente */
+  padding: 1.5rem;
+  position: relative;
+  z-index: 10;
+  background-color: white;
+  border-right: 1px solid #f1f5f9;
+  overflow: hidden;
+  /* Remove scroll */
+  transition: padding 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .mainPane {
+    padding: 2rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mainPane {
+    width: 40%;
+    padding: 2rem 4rem;
+    /* Reduzido para caber sem scroll */
+  }
+}
+
+@media (min-width: 1440px) {
+  .mainPane {
+    width: 35%;
+    padding: 2.5rem 5rem;
+    /* Reduzido para caber sem scroll */
+  }
+}
+
+.marketingPane {
+  display: none;
+  /* Hidden by default on mobile */
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .marketingPane {
+    display: block;
+    /* Visible on desktop */
+    width: 60%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .marketingPane {
+    width: 65%;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background-color: rgba(20, 57, 109, 0.05);
+  color: #14396D;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(20, 57, 109, 0.1);
+}

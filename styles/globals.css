@@ -1,0 +1,130 @@
+ :root {
+   --primary: #14396D;
+   --secondary: #2379BC;
+   --accent: #1B9195;
+   --bg-primary: #f8fafc;
+   --bg-secondary: #ffffff;
+   --text-primary: #0f172a;
+   --text-secondary: #64748b;
+   --border-color: #f1f5f9;
+   --radius-xl: 1.5rem;
+   --radius-lg: 1rem;
+ }
+
+ body,
+ button,
+ input,
+ textarea,
+ select {
+   font-family: 'Inter', sans-serif !important;
+ }
+
+ body {
+   background-color: var(--bg-primary);
+   color: var(--text-primary);
+   transition: colors 0.3s;
+ }
+
+ .dark {
+   --primary: #2379BC;
+   --bg-primary: #0f172a;
+   --bg-secondary: #1e293b;
+   --text-primary: #f8fafc;
+   --text-secondary: #94a3b8;
+   --border-color: #334155;
+ }
+
+ .container {
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   background-color: var(--bg-primary);
+   color: var(--text-primary);
+   overflow-x: hidden;
+   transition: background-color 0.5s, color 0.5s;
+ }
+
+ @media (min-width: 1024px) {
+   .container {
+     flex-direction: row;
+   }
+ }
+
+ .mainPane {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   padding: 2.5rem;
+   position: relative;
+   z-index: 10;
+   background-color: var(--bg-secondary);
+   transition: background-color 0.5s;
+   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+ }
+
+ @media (min-width: 768px) {
+   .mainPane {
+     padding: 3.5rem;
+   }
+ }
+
+ @media (min-width: 1024px) {
+   .mainPane {
+     width: 40%;
+     padding: 5rem;
+   }
+ }
+
+ .badge {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.25rem 0.75rem;
+   border-radius: 9999px;
+   background-color: rgba(20, 57, 109, 0.1);
+   color: #14396D;
+   font-size: 10px;
+   font-weight: 900;
+   text-transform: uppercase;
+   letter-spacing: 0.1em;
+   margin-bottom: 1rem;
+ }
+
+ @media print {
+   body {
+     background: white !important;
+     color: black !important;
+   }
+
+   .no-print {
+     display: none !important;
+   }
+
+   button {
+     display: none !important;
+   }
+
+   .bg-white,
+   .bg-slate-50,
+   .bg-slate-100 {
+     background: white !important;
+     border: 1px solid #eee !important;
+   }
+
+   .text-primary {
+     color: black !important;
+   }
+
+   .shadow-sm,
+   .shadow-md,
+   .shadow-lg,
+   .shadow-xl,
+   .shadow-2xl {
+     box-shadow: none !important;
+   }
+
+   .rounded-[3rem],
+   .rounded-[2.5rem] {
+     border-radius: 8px !important;
+   }
+ }

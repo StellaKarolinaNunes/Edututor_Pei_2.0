@@ -1,0 +1,388 @@
+.container {
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    color: inherit;
+    transition: padding 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 2rem 1.5rem;
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
+
+.title {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.025em;
+    transition: color 0.3s, font-size 0.3s;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 1.875rem;
+    }
+}
+
+:global(.dark) .title {
+    color: #f8fafc;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 0.825rem;
+    margin-top: 0.25rem;
+}
+
+
+:global(.dark) .subtitle {
+    color: #94a3b8;
+}
+
+/* Tabs */
+.tabsContainer {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.tabsContainer::-webkit-scrollbar {
+    display: none;
+}
+
+:global(.dark) .tabsContainer {
+    border-bottom-color: #334155;
+}
+
+.tab {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: #64748b;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .tab {
+        padding: 0.75rem 1.25rem;
+        font-size: 1rem;
+    }
+}
+
+:global(.dark) .tab {
+    color: #94a3b8;
+}
+
+.tab:hover {
+    color: #14396D;
+    background-color: #f8fafc;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+:global(.dark) .tab:hover {
+    color: #38bdf8;
+    background-color: #1e293b;
+}
+
+.activeTab {
+    color: #14396D;
+    border-bottom-color: #14396D;
+}
+
+:global(.dark) .activeTab {
+    color: #38bdf8;
+    border-bottom-color: #38bdf8;
+}
+
+.contentArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Common UI Elements */
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .toolbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.searchGroup {
+    position: relative;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .searchGroup {
+        max-width: 400px;
+    }
+}
+
+.newButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #14396D;
+    color: white;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(20, 57, 109, 0.2);
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .newButton {
+        width: auto;
+    }
+}
+
+.newButton:hover {
+    background-color: #2379BC;
+    transform: translateY(-1px);
+}
+
+/* Form Styles */
+.formContainer {
+    background-color: white;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    max-width: 800px;
+    margin: 0 auto;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+@media (min-width: 768px) {
+    .formContainer {
+        padding: 2rem;
+    }
+}
+
+:global(.dark) .formContainer {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+.sectionTitle {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+}
+
+@media (min-width: 768px) {
+    .sectionTitle {
+        font-size: 1.25rem;
+    }
+}
+
+:global(.dark) .sectionTitle {
+    color: #f8fafc;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+:global(.dark) .label {
+    color: #94a3b8;
+}
+
+.input,
+.select {
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+    font-size: 0.9rem;
+    width: 100%;
+    background-color: white;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+:global(.dark) .input,
+:global(.dark) .select {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: white;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+@media (min-width: 768px) {
+    .actions {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}
+
+:global(.dark) .actions {
+    border-top-color: #334155;
+}
+
+.cancelButton {
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    color: #64748b;
+    background: white;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .cancelButton {
+        width: auto;
+    }
+}
+
+:global(.dark) .cancelButton {
+    background-color: #0f172a;
+    color: #cbd5e1;
+    border-color: #334155;
+}
+
+:global(.dark) .cancelButton:hover {
+    background-color: #1e293b;
+}
+
+.saveButton {
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    color: white;
+    background: #14396D;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .saveButton {
+        width: auto;
+    }
+}
+
+
+/* System Info Styles */
+.infoCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 1.5rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+:global(.dark) .infoCard {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+.infoRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+:global(.dark) .infoRow {
+    border-bottom-color: #334155;
+}
+
+.infoRow:last-child {
+    border-bottom: none;
+}
+
+.infoLabel {
+    font-weight: 500;
+    color: #64748b;
+}
+
+:global(.dark) .infoLabel {
+    color: #94a3b8;
+}
+
+.infoValue {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+:global(.dark) .infoValue {
+    color: white;
+}

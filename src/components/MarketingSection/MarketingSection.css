@@ -1,0 +1,145 @@
+ 
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    circle at top,
+    #0b1c3d 0%,
+    #050810 55%,
+    #02040a 100%
+  );
+}
+
+/* Grid suave estilo Apple */
+.grid {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(rgba(120,160,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,160,255,0.06) 1px, transparent 1px);
+
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at 30% 20%, black 35%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 30% 20%, black 35%, transparent 75%);
+  opacity: 0.45;
+  animation: gridMove 40s linear infinite;
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: 600px 600px; }
+}
+
+/* ===========================
+   GLOWS
+=========================== */
+
+.glowTop {
+  position: fixed;
+  top: -20%;
+  right: -15%;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  filter: blur(160px);
+  opacity: 0.6;
+}
+
+.glowBottom {
+  position: fixed;
+  bottom: -20%;
+  left: -15%;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.5;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+
+.content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===========================
+   GLASS CARD
+=========================== */
+
+.glass {
+  background: linear-gradient(180deg, rgba(15,30,70,.75), rgba(8,15,40,.85));
+  border: 1px solid rgba(120,160,255,.15);
+  backdrop-filter: blur(30px);
+  border-radius: 2.5rem;
+  box-shadow: 0 40px 120px rgba(0,40,120,.4);
+}
+
+/* ===========================
+   TÍTULOS
+=========================== */
+
+.headerLabel {
+  font-size: 11px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  font-weight: 700;
+}
+
+.title {
+  text-align: center;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: white;
+  line-height: 1.1;
+}
+
+.subtitle {
+  text-align: justify;
+  max-width: 640px;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* ===========================
+   DOTS
+=========================== */
+
+.dots {
+  display: flex;
+  gap: 14px;
+}
+
+.dot {
+  height: 6px;
+  width: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.25);
+  transition: all .4s ease;
+}
+
+.dotActive {
+  width: 40px;
+  background: white;
+}

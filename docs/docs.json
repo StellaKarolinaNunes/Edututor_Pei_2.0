@@ -1,0 +1,96 @@
+{
+    "$schema": "https://mintlify.com/docs.json",
+    "theme": "mint",
+    "name": "VínculoTEA",
+    "colors": {
+        "primary": "#3B82F6",
+        "light": "#60A5FA",
+        "dark": "#1E40AF"
+    },
+    "favicon": "/favicon.png",
+    "navigation": {
+        "tabs": [
+            {
+                "tab": "Documentação",
+                "groups": [
+                    {
+                        "group": "Introdução",
+                        "pages": [
+                            "introduction",
+                            "development"
+                        ]
+                    },
+                    {
+                        "group": "Guias de Onboarding",
+                        "pages": [
+                            "guides/network-manager",
+                            "guides/first-30-days",
+                            "guides/deploy"
+                        ]
+                    },
+                    {
+                        "group": "Conceitos e Glossário",
+                        "pages": [
+                            "concepts/pei-logic",
+                            "concepts/best-practices",
+                            "concepts/glossary"
+                        ]
+                    },
+                    {
+                        "group": "Recursos da Plataforma",
+                        "pages": [
+                            "features/students",
+                            "features/pei",
+                            "features/admin"
+                        ]
+                    },
+                    {
+                        "group": "Arquitetura e API",
+                        "pages": [
+                            "architecture",
+                            "security",
+                            "api-reference/database"
+                        ]
+                    },
+                    {
+                        "group": "Legal",
+                        "pages": [
+                            "legal/terms",
+                            "legal/privacy"
+                        ]
+                    },
+                    {
+                        "group": "Comunidade",
+                        "pages": [
+                            "troubleshooting",
+                            "references",
+                            "changelog"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "logo": {
+        "light": "/logo/light.svg",
+        "dark": "/logo/dark.svg"
+    },
+    "navbar": {
+        "links": [
+            {
+                "label": "Suporte",
+                "href": "mailto:suporte@vinculotea.com.br"
+            }
+        ],
+        "primary": {
+            "type": "button",
+            "label": "Acessar Plataforma",
+            "href": "https://app.vinculotea.com.br"
+        }
+    },
+    "footer": {
+        "socials": {
+            "github": "https://github.com/StellaKarolinaNunes/Edututor_Pei_2.0"
+        }
+    }
+}
