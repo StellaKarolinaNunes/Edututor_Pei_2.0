@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #14396D;
+  --color-secondary: #2379BC;
+  --color-accent: #1B9195;
+  --color-success: #10B981;
+  --color-warning: #EA695B;
+  --color-dark-bg: #000c1a;
+
+  --font-sans: "Outfit", "Inter", sans-serif;
+
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2rem;
+}
+
 :root {
   --primary: #14396D;
   --secondary: #2379BC;

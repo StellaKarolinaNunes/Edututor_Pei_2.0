@@ -17,11 +17,7 @@ const App: React.FC = () => {
   const [view, setView] = useState<View>('login');
   const [user, setUser] = useState<any>(null);
   const [loadingAuth, setLoadingAuth] = useState(true);
-  const [simulateError, setSimulateError] = useState(false);
 
-  if (simulateError) {
-    throw new Error("Simulação de Erro para Teste do ErrorBoundary");
-  }
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -71,14 +67,15 @@ const App: React.FC = () => {
     <div className={styles.container}>
       <main className={styles.mainPane}>
 
-        <header className="mb-6 text-center">
-          <Logo />
-        </header>
+
 
         <div className="flex flex-col max-w-md mx-auto w-full gap-8">
 
           {view === 'login' && (
             <div className="flex flex-col gap-6">
+              <header className="mb-10 text-center">
+                <Logo />
+              </header>
               <div className="text-left">
                 <div className={styles.badge}>
                   <span className="size-1.5 rounded-full bg-primary animate-pulse"></span>
@@ -115,13 +112,6 @@ const App: React.FC = () => {
           <p className="text-[9px] text-slate-300 font-bold uppercase tracking-[0.2em]">
             © 2026 Vinculo PEI
           </p>
-          {/* Botão de Teste Temporário */}
-          <button
-            onClick={() => setSimulateError(true)}
-            className="mt-2 text-[9px] text-red-300 hover:text-red-500 underline"
-          >
-            [TESTE] Simular Erro
-          </button>
         </footer>
       </main>
 

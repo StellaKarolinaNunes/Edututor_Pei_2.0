@@ -45,7 +45,10 @@ const MarketingSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center bg-[#000d1a] px-4 sm:px-6 font-sans overflow-hidden">
+    <div
+      className="relative w-full h-full flex flex-col items-center justify-center bg-dark-bg px-4 sm:px-6 font-sans overflow-hidden"
+      style={{ backgroundColor: '#000c1a' }}
+    >
       <style>{`
         @keyframes rotate-dashed {
           from { transform: rotate(0deg); }
@@ -243,7 +246,10 @@ const AnalyticsChart = ({ color }: { color: string }) => {
   const areaPoints = `0,100 ${points} 100,100`;
 
   return (
-    <div className="w-full max-w-lg bg-white/[0.03] backdrop-blur-2xl border border-white/10 p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+    <div
+      className="w-full max-w-lg bg-white/[0.03] backdrop-blur-2xl border border-white/10 p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden"
+      style={{ backgroundColor: 'rgba(255, 255, 255, 0.03)', maxWidth: '480px' }}
+    >
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center gap-3">
           <div className="p-2.5 bg-emerald-500/10 rounded-xl"><TrendingUp size={22} className="text-emerald-400" /></div>
