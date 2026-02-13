@@ -9,7 +9,7 @@ import { supabase } from './supabase';
  */
 
 export async function cleanOrphanAuthUsers() {
-    console.log('🧹 Iniciando limpeza de usuários órfãos...');
+
 
     try {
         // 1. Buscar todos os usuários da tabela Usuarios
@@ -24,15 +24,9 @@ export async function cleanOrphanAuthUsers() {
 
         const emailsRegistrados = new Set(usuarios?.map(u => u.Email.toLowerCase()) || []);
 
-        console.log(`📊 Total de usuários na tabela Usuarios: ${emailsRegistrados.size}`);
-        console.log(`📋 E-mails cadastrados:`, Array.from(emailsRegistrados).join(', '));
 
-        console.log('⚠️ ATENÇÃO: Este script requer privilégios de administrador para listar usuários do Auth.');
-        console.log('💡 Para limpar usuários órfãos, você precisa:');
-        console.log('   1. Acessar o painel do Supabase (dashboard.supabase.com)');
-        console.log('   2. Ir em Authentication → Users');
-        console.log('   3. Comparar com a lista acima');
-        console.log('   4. Excluir manualmente usuários que não estão na lista');
+
+
 
         return {
             usuariosCadastrados: emailsRegistrados.size,
@@ -50,7 +44,7 @@ export async function cleanOrphanAuthUsers() {
 export async function checkEmailConflict(email: string) {
     const cleanEmail = email.trim().toLowerCase();
 
-    console.log(`🔍 Verificando conflito para: ${cleanEmail}`);
+
 
     // Verificar na tabela Usuarios
     const { data: usuarioData } = await supabase
@@ -59,22 +53,7 @@ export async function checkEmailConflict(email: string) {
         .eq('Email', cleanEmail)
         .maybeSingle();
 
-    console.log('📊 Resultado da verificação:');
-    console.log(`   • Na tabela Usuarios: ${usuarioData ? '✅ SIM' : '❌ NÃO'}`);
 
-    if (usuarioData) {
-        console.log(`   • Nome: ${usuarioData.Nome}`);
-        console.log(`   • Status: ${usuarioData.Status}`);
-        console.log(`   • ID: ${usuarioData.Usuario_ID}`);
-    } else {
-        console.log('⚠️ E-mail NÃO encontrado na tabela Usuarios');
-        console.log('💡 Possível causa: Usuário órfão no Supabase Auth');
-        console.log('🔧 Solução:');
-        console.log('   1. Acesse: https://supabase.com/dashboard/project/[seu-projeto]/auth/users');
-        console.log(`   2. Procure pelo e-mail: ${cleanEmail}`);
-        console.log('   3. Exclua o usuário do Auth');
-        console.log('   4. Tente criar novamente');
-    }
 
     return { existeNaTabela: !!usuarioData, dados: usuarioData };
 }
@@ -84,8 +63,5 @@ if (typeof window !== 'undefined') {
     (window as any).cleanOrphanAuthUsers = cleanOrphanAuthUsers;
     (window as any).checkEmailConflict = checkEmailConflict;
 
-    console.log('🛠️ Ferramentas de diagnóstico carregadas!');
-    console.log('💡 Uso:');
-    console.log('   • cleanOrphanAuthUsers() - Lista usuários cadastrados');
-    console.log('   • checkEmailConflict("email@exemplo.com") - Verifica conflito de e-mail');
+
 }

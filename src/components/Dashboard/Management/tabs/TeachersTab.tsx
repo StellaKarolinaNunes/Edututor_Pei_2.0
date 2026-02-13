@@ -107,9 +107,8 @@ export const TeachersTab = ({ onUpdate, category }: { onUpdate?: () => void; cat
                 plataforma_id: authUser?.plataforma_id
             };
 
-            console.log('Tentando salvar profissional:', professionalData);
+
             if (editingTeacher) {
-                console.log('ID do Professor:', editingTeacher.Professor_ID);
                 await studentService.updateProfessional(editingTeacher.Professor_ID, professionalData);
             } else {
                 await studentService.createProfessional(professionalData);

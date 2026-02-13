@@ -11,6 +11,15 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         '@': path.resolve(__dirname, './src'),
       },
     },
+    server: {
+      port: 5173,
+      strictPort: true,
+      host: true,
+      hmr: {
+        protocol: 'ws',
+        host: 'localhost',
+      },
+    },
     test: {
       globals: true,
       environment: 'jsdom',

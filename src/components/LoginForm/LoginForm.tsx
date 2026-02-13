@@ -33,7 +33,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onForgotPassword }) => {
         if (authError.message === 'Invalid login credentials') {
           // Verificar se o e-mail existe na tabela Usuarios (case-insensitive)
           const cleanEmail = email.toLowerCase().trim();
-          console.log('🔍 Verificando e-mail na tabela:', cleanEmail);
+
 
           const { data: emailExists, error: checkError } = await supabase
             .from('Usuarios')
@@ -41,16 +41,15 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onForgotPassword }) => {
             .ilike('Email', cleanEmail)
             .maybeSingle();
 
-          console.log('📊 Resultado da verificação:', emailExists);
-          console.log('⚠️ Erro (se houver):', checkError);
+
 
           if (emailExists) {
             // E-mail cadastrado, mas senha incorreta
-            console.log('✅ E-mail encontrado na tabela. Senha incorreta.');
+
             setError('E-mail ou senha incorretos.');
           } else {
             // E-mail NÃO cadastrado no sistema
-            console.log('❌ E-mail NÃO encontrado na tabela Usuarios');
+
             setError('Esta conta não existe em nosso sistema. Entre em contato para solicitar uma demonstração: instagram.com/edututorpei');
           }
         } else {
@@ -61,7 +60,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onForgotPassword }) => {
 
       // ETAPA 2: OBRIGATÓRIO - Verificar se está cadastrado na lista de usuários do sistema
       if (authData.user) {
-        console.log('🔍 Verificando se usuário está cadastrado no sistema...');
+
 
         const { data: userProfile, error: profileError } = await supabase
           .from('Usuarios')
@@ -71,8 +70,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onForgotPassword }) => {
 
         // CENÁRIO 2: Usuário órfão - existe no Auth mas não na tabela Usuarios
         if (profileError || !userProfile) {
-          console.log('❌ ACESSO NEGADO: Usuário não encontrado na tabela Usuarios');
-          console.log('💡 Este é um usuário órfão - existe no Auth mas não foi cadastrado corretamente');
+
 
           // Fazer logout imediatamente para segurança
           await supabase.auth.signOut();
@@ -83,7 +81,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onForgotPassword }) => {
 
         // CENÁRIO 3: Usuário está cadastrado mas inativo
         if (userProfile.Status !== 'Ativo') {
-          console.log('❌ ACESSO NEGADO: Conta inativa');
+
 
           await supabase.auth.signOut();
           setError('Sua conta está inativa. Entre em contato com o administrador para reativar seu acesso.');
@@ -91,11 +89,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onForgotPassword }) => {
         }
 
         // ✅ CENÁRIO 4: ACESSO AUTORIZADO
-        console.log('✅ ACESSO LIBERADO');
-        console.log(`👤 Usuário: ${userProfile.Nome}`);
-        console.log(`📧 E-mail: ${userProfile.Email}`);
-        console.log(`🔑 Tipo: ${userProfile.Tipo}`);
-        console.log(`✨ Status: ${userProfile.Status}`);
+
       }
     } catch (err) {
       console.error('❌ Erro no processo de login:', err);

@@ -9,7 +9,8 @@ const authClient = createClient(supabaseUrl, supabaseAnonKey, {
     auth: {
         persistSession: false,
         autoRefreshToken: false,
-        detectSessionInUrl: false
+        detectSessionInUrl: false,
+        storageKey: 'sb-admin-management-auth'
     }
 });
 
@@ -44,7 +45,7 @@ export const userService = {
 
         const cleanEmail = userData.email.trim().toLowerCase();
 
-        console.log('📧 Tentando criar usuário com e-mail:', cleanEmail);
+
 
         // Email format validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -57,10 +58,10 @@ export const userService = {
             throw new Error('A senha deve ter no mínimo 6 caracteres.');
         }
 
-        console.log('✅ E-mail validado localmente.');
+
 
         // VERIFICAÇÃO PRÉVIA: Checar se já existe na tabela Usuarios
-        console.log('🔍 Verificando se e-mail já está cadastrado...');
+
         const { data: existingUser } = await supabase
             .from('Usuarios')
             .select('Usuario_ID, Nome, Email')
@@ -68,15 +69,15 @@ export const userService = {
             .maybeSingle();
 
         if (existingUser) {
-            console.log('❌ E-mail já cadastrado:', existingUser);
+
             throw new Error(`Este e-mail já está cadastrado para o usuário: ${existingUser.Nome}`);
         }
 
-        console.log('✅ E-mail disponível. Prosseguindo com cadastro...');
+
 
         try {
             // ETAPA 1: Criar conta de autenticação usando client isolado (não desloga o admin)
-            console.log('🔐 Criando conta de autenticação...');
+
             const { data: authData, error: authError } = await authClient.auth.signUp({
                 email: cleanEmail,
                 password: userData.senha,
@@ -102,13 +103,13 @@ export const userService = {
                         throw new Error(`Erro ao criar conta: ${authError.message}`);
                     }
                     // Auth user was created despite the trigger error. Continue.
-                    console.log('✅ Auth user criado apesar do erro no trigger. Continuando...');
+
                 } else {
                     throw new Error(`Erro ao criar conta: ${authError.message}`);
                 }
             }
 
-            console.log('✅ Conta de autenticação criada. Auth UID:', authData.user?.id);
+
 
             // ETAPA 2: Verificar se o trigger já criou o registro na tabela Usuarios
             const { data: triggerCreated } = await supabase
@@ -119,7 +120,7 @@ export const userService = {
 
             if (triggerCreated) {
                 // O trigger já criou o registro, só precisa atualizar com os dados corretos
-                console.log('🔄 Trigger já criou registro. Atualizando...');
+
                 const { error: updateError } = await supabase
                     .from('Usuarios')
                     .update({
@@ -137,7 +138,7 @@ export const userService = {
                 }
             } else {
                 // ETAPA 2b: Criar registro na tabela Usuarios manualmente
-                console.log('📝 Criando registro na tabela Usuarios...');
+
                 const { data: newUser, error: profileError } = await supabase
                     .from('Usuarios')
                     .insert([{
@@ -157,11 +158,11 @@ export const userService = {
                     throw new Error(`Erro ao salvar perfil do usuário: ${profileError.message}`);
                 }
 
-                console.log('✅ Registro criado na tabela Usuarios. ID:', newUser.Usuario_ID);
+
 
                 // ETAPA 3: Se for profissional, criar vínculo com escola
                 if (userData.role === 'Profissional' && userData.escola_id) {
-                    console.log('🏫 Criando vínculo com escola...');
+
                     const { error: teacherError } = await supabase
                         .from('Professores')
                         .insert([{
@@ -179,7 +180,7 @@ export const userService = {
                 }
             }
 
-            console.log('🎉 Usuário criado com sucesso!');
+
             return authData.user;
 
         } catch (error: any) {
